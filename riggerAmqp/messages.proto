@@ -1,0 +1,80 @@
+syntax = "proto3";
+import "github.com/AsynkronIT/protoactor-go/actor/protos.proto";
+package riggerAmqp;
+
+message connectConfig {
+  string tag = 1; // 连接的唯一标识, 不能重复,如果未指定,系统会随机生成一个
+  string host = 2;
+  int32 port = 3;
+  string user = 4;
+  string password = 5;
+}
+
+message connection {
+  string tag = 1;
+  actor.PID pid = 2;
+}
+
+message channel {
+  actor.PID pid = 1;
+}
+
+message connectResp {
+  string error = 1;
+  connection conn = 2;
+}
+
+// 打开频道
+message openChannel {
+
+}
+
+message openChannelResp {
+  string error = 1;
+  channel channel = 2;
+}
+
+//message consumeResp {
+//  string error = 1;
+//}
+
+message cancelConsume {
+  string consumer = 1;
+  bool noWait = 2;
+}
+
+message queueInspection {
+  string error = 1;
+  string name = 2;
+  int32 messages = 3;
+  int32 consumers = 4;
+}
+
+message queueDeleteResp {
+  string error = 1;
+  int32 purged = 2; // purged掉的消息数量
+}
+
+//message cancelConsumeResp {
+//  string error = 1;
+//}
+//
+//message publishResp {
+//  string error = 1;
+//}
+//
+//message closeConnectionResp {
+//  string error = 1;
+//}
+//
+//message ackResp {
+//  string error = 1;
+//}
+//
+//message nackResp {
+//  string error = 1;
+//}
+//
+//message rejectResp {
+//  string error = 1;
+//}
