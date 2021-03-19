@@ -1,4 +1,4 @@
-module go-rigger-amqp
+module github.com/saintEvol/go-rigger-amqp
 
 go 1.15
 
