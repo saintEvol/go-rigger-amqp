@@ -14,7 +14,8 @@ import (
 // 根据配置信息生成uri
 func (config *ConnectConfig) Uri() string {
 	// "amqp://admin:admin@localhost:5672/"
-	return fmt.Sprintf("amqp://%s:%s@%s:%d", config.User, config.Password, config.Host, config.Port)
+	return fmt.Sprintf("amqp://%s:%s@%s:%d/%s",
+		config.User, config.Password, config.Host, config.Port, config.VirtualHost)
 }
 
 // 连接MQ

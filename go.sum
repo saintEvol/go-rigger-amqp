@@ -237,6 +237,8 @@ github.com/saintEvol/go-rigger v0.0.10 h1:gHoYp60rQxCp46MBhRbRqYrJpJMP1XdpxZZZyk
 github.com/saintEvol/go-rigger v0.0.10/go.mod h1:sZmHWfOIWjByTINtY+5HALsBMI/PEyFxiUePiHC5nB8=
 github.com/saintEvol/go-rigger v0.0.11 h1:QhyxkKgL2AA9uNI4F32U0EydqviwZublrz/y8HCbLAM=
 github.com/saintEvol/go-rigger v0.0.11/go.mod h1:sZmHWfOIWjByTINtY+5HALsBMI/PEyFxiUePiHC5nB8=
+github.com/saintEvol/go-rigger v0.0.12 h1:7EbIu4oPt/B+ASgh13vEAHnjKCDE6s+96ES3KoY88fQ=
+github.com/saintEvol/go-rigger v0.0.12/go.mod h1:sZmHWfOIWjByTINtY+5HALsBMI/PEyFxiUePiHC5nB8=
 github.com/sean-/seed v0.0.0-20170313163322-e2103e2c3529/go.mod h1:DxrIzT+xaE7yg65j358z/aeFdxmN0P9QXhEzd20vsDc=
 github.com/serialx/hashring v0.0.0-20180504054112-49a4782e9908 h1:RRpyb4kheanCQVyYfOhkZoD/cwClvn12RzHex2ZmHxw=
 github.com/serialx/hashring v0.0.0-20180504054112-49a4782e9908/go.mod h1:/yeG0My1xr/u+HZrFQ1tOQQQQrOawfyMUH13ai5brBc=

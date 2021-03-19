@@ -6,8 +6,9 @@ message connectConfig {
   string tag = 1; // 连接的唯一标识, 不能重复,如果未指定,系统会随机生成一个
   string host = 2;
   int32 port = 3;
-  string user = 4;
-  string password = 5;
+  string virtualHost = 4;
+  string user = 5;
+  string password = 6;
 }
 
 message connection {
