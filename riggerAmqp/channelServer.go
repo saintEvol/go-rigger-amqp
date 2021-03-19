@@ -268,7 +268,7 @@ func (c *channelServer) amqpLoop(ctx actor.Context)  {
 		case delivery := <- c.delivery:
 			logrus.Trace("notify chan delivery")
 			if c.subscriber != nil && c.subscriber.pid != nil {
-				ctx.Send(c.subscriber.pid, &delivery)
+				ctx.Send(c.subscriber.pid, &Delivery{Delivery: &delivery, channel: &Channel{Pid: ctx.Self()}})
 			}
 		}
 	}
