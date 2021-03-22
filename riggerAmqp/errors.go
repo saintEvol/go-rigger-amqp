@@ -12,5 +12,5 @@ func (e ErrorFindNoPid) Error() string {
 type ErrorConnInvalid string
 
 func (e ErrorConnInvalid) Error() string {
-	return "connection is invalid"
+	return "Connection is invalid"
 }

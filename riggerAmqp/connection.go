@@ -40,3 +40,29 @@ func (conn *Connection) Close() error {
 		return err
 	}
 }
+
+/*
+注册连接的关闭事件, 注册后,连接关闭时,会向监听进程发送消息: *riggerAmqp.ConnectionClosed
+如果使用此函数注册监听时, 连接已经关闭, 则会立即触发一次事件
+*/
+func (conn *Connection) NotifyClosed(pid *actor.PID) error {
+	f := rigger.Root().Root.RequestFuture(conn.Pid, &notifyClose{pid: pid}, 3 * time.Second)
+	return fetchFutureError(f)
+}
+
+func (conn *Connection) UnNotifyClosed(pid *actor.PID) {
+	rigger.Root().Root.Send(conn.Pid, &unNotifyClose{pid: pid})
+}
+
+/*
+注册连接连接成功的事件, 注册后,如果连接连接成功, 则监听进程会收到消息: *riggerAmqp.Connected
+如果注册时, 连接已经连接成功, 则会立即触发一次事件
+*/
+func (conn *Connection) NotifyConnected(pid *actor.PID) error {
+	f := rigger.Root().Root.RequestFuture(conn.Pid, &notifyConnected{pid: pid}, 3 * time.Second)
+	return fetchFutureError(f)
+}
+
+func (conn *Connection) UnNotifyConnected(pid *actor.PID)  {
+	rigger.Root().Root.Send(conn.Pid, &unNotifyConnected{pid: pid})
+}

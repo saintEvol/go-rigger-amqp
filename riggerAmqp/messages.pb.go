@@ -20,7 +20,7 @@ var _ = math.Inf
 
 // This is a compile-time assertion to ensure that this generated file
 // is compatible with the proto package it is being compiled against.
-// A compilation error at this line likely means your copy of the
+// A compilation Error at this line likely means your copy of the
 // proto package needs to be updated.
 const _ = proto.GoGoProtoPackageIsVersion2 // please upgrade the proto package
 
@@ -202,7 +202,7 @@ func (m *Channel) GetPid() *actor.PID {
 }
 
 type ConnectResp struct {
-	Error string      `protobuf:"bytes,1,opt,name=error,proto3" json:"error,omitempty"`
+	Error string      `protobuf:"bytes,1,opt,name=Error,proto3" json:"Error,omitempty"`
 	Conn  *Connection `protobuf:"bytes,2,opt,name=conn,proto3" json:"conn,omitempty"`
 }
 
@@ -289,7 +289,7 @@ func (m *OpenChannel) XXX_DiscardUnknown() {
 var xxx_messageInfo_OpenChannel proto.InternalMessageInfo
 
 type OpenChannelResp struct {
-	Error   string   `protobuf:"bytes,1,opt,name=error,proto3" json:"error,omitempty"`
+	Error   string   `protobuf:"bytes,1,opt,name=Error,proto3" json:"Error,omitempty"`
 	Channel *Channel `protobuf:"bytes,2,opt,name=channel,proto3" json:"channel,omitempty"`
 }
 
@@ -391,7 +391,7 @@ func (m *CancelConsume) GetNoWait() bool {
 }
 
 type QueueInspection struct {
-	Error     string `protobuf:"bytes,1,opt,name=error,proto3" json:"error,omitempty"`
+	Error     string `protobuf:"bytes,1,opt,name=Error,proto3" json:"Error,omitempty"`
 	Name      string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
 	Messages  int32  `protobuf:"varint,3,opt,name=messages,proto3" json:"messages,omitempty"`
 	Consumers int32  `protobuf:"varint,4,opt,name=consumers,proto3" json:"consumers,omitempty"`
@@ -458,7 +458,7 @@ func (m *QueueInspection) GetConsumers() int32 {
 }
 
 type QueueDeleteResp struct {
-	Error  string `protobuf:"bytes,1,opt,name=error,proto3" json:"error,omitempty"`
+	Error  string `protobuf:"bytes,1,opt,name=Error,proto3" json:"Error,omitempty"`
 	Purged int32  `protobuf:"varint,2,opt,name=purged,proto3" json:"purged,omitempty"`
 }
 
@@ -510,7 +510,7 @@ func (m *QueueDeleteResp) GetPurged() int32 {
 
 func init() {
 	proto.RegisterType((*ConnectConfig)(nil), "riggerAmqp.connectConfig")
-	proto.RegisterType((*Connection)(nil), "riggerAmqp.connection")
+	proto.RegisterType((*Connection)(nil), "riggerAmqp.Connection")
 	proto.RegisterType((*Channel)(nil), "riggerAmqp.channel")
 	proto.RegisterType((*ConnectResp)(nil), "riggerAmqp.connectResp")
 	proto.RegisterType((*OpenChannel)(nil), "riggerAmqp.openChannel")
@@ -1777,10 +1777,10 @@ func (m *Connection) Unmarshal(dAtA []byte) error {
 		fieldNum := int32(wire >> 3)
 		wireType := int(wire & 0x7)
 		if wireType == 4 {
-			return fmt.Errorf("proto: connection: wiretype end group for non-group")
+			return fmt.Errorf("proto: Connection: wiretype end group for non-group")
 		}
 		if fieldNum <= 0 {
-			return fmt.Errorf("proto: connection: illegal tag %d (wire type %d)", fieldNum, wire)
+			return fmt.Errorf("proto: Connection: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
 		case 1:

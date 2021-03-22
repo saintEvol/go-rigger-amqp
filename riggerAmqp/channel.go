@@ -6,6 +6,11 @@ import (
 	"github.com/saintEvol/go-rigger/rigger"
 	"time"
 )
+
+//func (channel *Channel) Equal(another *Channel) bool {
+//	return channel.Pid.Id == another.Pid.Id && channel.Pid.Address == another.Pid.Address
+//}
+
 /*
 MQ 信道, 定义在messages.proto中
 */
@@ -16,6 +21,15 @@ func (channel *Channel) Close() error {
 	}
 	f := rigger.Root().Root.StopFuture(channel.Pid)
 	return f.Wait()
+}
+
+/*
+注册频道的关闭监听, 监听后,如果频道关闭,监控进程会收到 *actor.Terminated
+和监控连接关闭不一样, 监听通道实际上是监听的通道进程是否关闭
+如果监听时, 通道已经关闭,则会立即收到一条 *actor.Terminated 消息
+*/
+func (channel *Channel) NotifyClosed(ctx actor.Context) {
+	ctx.Watch(channel.Pid)
 }
 
 // 开始消费消息

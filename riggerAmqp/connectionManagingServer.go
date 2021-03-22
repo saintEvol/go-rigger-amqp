@@ -32,7 +32,7 @@ func (c *connectionManagingServer) OnStarted(ctx actor.Context, args interface{}
 		c.connectionSupPid = pid
 		return nil
 	} else {
-		return errors.New("failed to get connection sup Pid")
+		return errors.New("failed to get Connection sup Pid")
 	}
 }
 
@@ -59,7 +59,7 @@ func (c *connectionManagingServer) OnMessage(ctx actor.Context, message interfac
 func (c *connectionManagingServer) connect(ctx actor.Context, config *ConnectConfig) (*Connection, error) {
 	// 检查连接是否已经存在
 	if c.exists(config.Tag) {
-		return nil, errors.New(fmt.Sprintf("connection tag: %s has existed", config.Tag))
+		return nil, errors.New(fmt.Sprintf("Connection tag: %s has existed", config.Tag))
 	}
 
 	// 启动连接子进程
@@ -67,7 +67,7 @@ func (c *connectionManagingServer) connect(ctx actor.Context, config *ConnectCon
 }
 
 func (c *connectionManagingServer) onConnectionDown(pid *actor.PID)  {
-	tag := c.makeTagFromPid(pid)
+	tag := makeTagFromPid(pid)
 	delete(c.connections, tag)
 }
 
@@ -88,13 +88,12 @@ func (c *connectionManagingServer) startConnector(ctx actor.Context, config *Con
 	connPid, err := rigger.StartChildSync(ctx, c.connectionSupPid, config, 3 * time.Second)
 	if err == nil {
 		// 存入信息
-		tag := c.makeTagFromPid(connPid)
+		tag := makeTagFromPid(connPid)
 		c.connections[tag] = connPid
 		// 监控
 		ctx.Watch(connPid)
 
-		// 等待连接进程连接上MQ
-		return &Connection{Tag: c.makeTagFromPid(connPid), Pid: connPid}, nil
+		return &Connection{Tag: tag, Pid: connPid}, nil
 	} else {
 		return nil, err
 	}
@@ -114,7 +113,7 @@ func (c *connectionManagingServer) makeConnectResp(connection *Connection, err e
 	}
 }
 
-func (c *connectionManagingServer) makeTagFromPid(pid *actor.PID) string {
+func makeTagFromPid(pid *actor.PID) string {
 	id := pid.Id
 	arr := strings.Split(id, "/")
 	return arr[len(arr) - 1]
