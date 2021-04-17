@@ -42,7 +42,7 @@ func (a *App) OnGetSupFlag(ctx actor.Context) (supFlag rigger.SupervisorFlag, ch
 		return actor.RestartDirective
 	}
 	childSpecs = []*rigger.SpawnSpec{
-		rigger.DefaultSpawnSpec(supName),
+		rigger.SpawnSpecWithKind(supName),
 	}
 
 	return

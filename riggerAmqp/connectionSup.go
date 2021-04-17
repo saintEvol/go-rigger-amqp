@@ -43,7 +43,7 @@ func (c *connectionSup) OnGetSupFlag(ctx actor.Context) (supFlag rigger.Supervis
 	}
 
 	childSpecs = []*rigger.SpawnSpec{
-		rigger.DefaultSpawnSpec(connectionServerName),
+		rigger.SpawnSpecWithKind(connectionServerName),
 	}
 
 	return

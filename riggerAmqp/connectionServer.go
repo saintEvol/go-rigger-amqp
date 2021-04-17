@@ -189,7 +189,7 @@ func (c *connectionServer) openChannel(ctx actor.Context) (*Channel, error) {
 	if err == nil {
 		// 启动channel进程
 		// TODO 优化rigger启动子进程的接口,增加可以直接回复给自定义进程ID的接口,
-		pid, err := rigger.StartChildSync(ctx, c.channelSupPid, channel, 3 * time.Second)
+		pid, err := rigger.StartChildSync(ctx, c.channelSupPid, rigger.SimpleSpawnSpec("", channel), 3 * time.Second)
 		if err == nil {
 			return &Channel{Pid: pid}, nil
 		} else {

@@ -43,9 +43,9 @@ func (t *topSup) OnGetSupFlag(ctx actor.Context) (supFlag rigger.SupervisorFlag,
 	}
 
 	childSpecs = []*rigger.SpawnSpec{
-		rigger.DefaultSpawnSpec(connManagingServerName),
-		rigger.DefaultSpawnSpec(connectionSupName),
-		rigger.DefaultSpawnSpec(channelSupName),
+		rigger.SpawnSpecWithKind(connectionSupName),
+		rigger.SpawnSpecWithKind(connManagingServerName),
+		rigger.SpawnSpecWithKind(channelSupName),
 	}
 
 	return

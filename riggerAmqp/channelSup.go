@@ -43,7 +43,7 @@ func (c *channelSup) OnGetSupFlag(ctx actor.Context) (supFlag rigger.SupervisorF
 	}
 
 	childSpecs = []*rigger.SpawnSpec{
-		rigger.DefaultSpawnSpec(channelServerName),
+		rigger.SpawnSpecWithKind(channelServerName),
 	}
 
 	return

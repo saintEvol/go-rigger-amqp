@@ -85,7 +85,7 @@ func (c *connectionManagingServer) exists(tag string) bool {
 }
 
 func (c *connectionManagingServer) startConnector(ctx actor.Context, config *ConnectConfig) (*Connection, error) {
-	connPid, err := rigger.StartChildSync(ctx, c.connectionSupPid, config, 3 * time.Second)
+	connPid, err := rigger.StartChildSync(ctx, c.connectionSupPid, rigger.SimpleSpawnSpec("", config), 3 * time.Second)
 	if err == nil {
 		// 存入信息
 		tag := makeTagFromPid(connPid)
